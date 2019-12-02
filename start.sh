@@ -17,10 +17,10 @@ sudo docker ps -a
 
 
 echo 'Installing chaincode..'
-sudo docker exec -it cli peer chaincode install -n mycc -v 1.0 -p "/opt/gopath/src/github.com/chaincode"
+sudo docker exec -it cli peer chaincode install -n mycc -v 1.0 -p "github.com/chaincode"
 
 echo 'Instantiating chaincode..'
-sudo docker exec -it cli peer chaincode instantiate -o orderer.example.com:7050 -C mychannel -n mycc github.com/chaincode -v v0 -c '{"Args": [""]}'
+sudo docker exec -it cli peer chaincode instantiate -o orderer.example.com:7050 -C mychannel -n mycc github.com/chaincode -v 1.0 -c '{"Args": [""]}'
 echo 'Getting things ready for chaincode calls..'
 sleep 5
 
