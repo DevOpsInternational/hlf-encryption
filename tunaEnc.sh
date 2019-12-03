@@ -34,6 +34,9 @@ echo 'Registering Tunas..'
 
 sudo docker exec -it cli peer chaincode invoke -o orderer.example.com:7050 -C mychannel -n mycc -c '{"function":"initLedger","Args":[]}'
 
+echo "querying Tuna.."
+sudo docker exec -it cli peer chaincode query -C mychannel -n mycc -c '{"function":"queryTuna","Args":["2"]}'
+
 sleep 5
 # Starting docker logs of chaincode container
 
