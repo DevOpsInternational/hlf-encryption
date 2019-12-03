@@ -118,6 +118,7 @@ services:
     volumes:
         - /var/run/:/host/var/run/
         - ./../chaincode:/opt/gopath/src/github.com/chaincode
+        - ./../chaincode/errors:/opt/gopath/src/github.com/pkg/errors
         - ./crypto-config:/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/
     networks:
         - basic
