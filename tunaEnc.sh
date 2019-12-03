@@ -11,6 +11,9 @@ cd basic-network
 
 sudo docker ps -a
 
+sudo docker-compose -f docker-compose.yml up -d cli
+
+sudo docker ps -a
 
 
 echo 'Installing chaincode..'
