@@ -16,7 +16,7 @@ func getStateAndDecrypt(stub shim.ChaincodeStubInterface, ent entities.Encrypter
 	}
 
 	if len(ciphertext) == 0 {
-		return nil, shim.Error("no ciphertext to decrypt")
+		return nil
 	}
 
 	return ent.Decrypt(ciphertext)
