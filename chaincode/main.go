@@ -204,7 +204,7 @@ func (s *SmartContract) changeTunaHolder(APIstub shim.ChaincodeStubInterface, ar
 	// we are skipping this check for this example
 	tuna.Holder = args[1]
 
-	tunaAsBytes, _ = json.Marshal(tuna)
+	tunaAsBytes, _ := json.Marshal(tuna)
         error := fc.Encrypter(APIstub, args[0], []byte(tunaAsBytes))
 	if error != nil {
 	  return shim.Error(fmt.Sprintf("Failed to Encrypt changed tuna holder: %s", args[0]))
