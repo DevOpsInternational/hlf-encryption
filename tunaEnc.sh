@@ -17,7 +17,7 @@ sudo docker ps -a
 
 
 echo 'Installing chaincode..'
-sudo docker exec -it cli peer chaincode install -n mycc -v 1.0 -p "github.com/"
+sudo docker exec -it cli peer chaincode install -n mycc -v 1.0 -p "github.com/chaincode/"
 
 echo 'Instantiating chaincode..'
 sudo docker exec -it cli peer chaincode instantiate -o orderer.example.com:7050 -C mychannel -n mycc -v 1.0 -c '{"Args":[]}'
