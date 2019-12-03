@@ -3,7 +3,7 @@ package fabcrypt
 import (
 	"github.com/hyperledger/fabric/core/chaincode/shim"
 	"github.com/hyperledger/fabric/core/chaincode/shim/ext/entities"
-	"github.com/pkg/errors"
+         "github.com/pkg/errors"
 )
 
 // getStateAndDecrypt retrieves the value associated to key,
@@ -18,6 +18,7 @@ func getStateAndDecrypt(stub shim.ChaincodeStubInterface, ent entities.Encrypter
 
 	if len(ciphertext) == 0 {
 		return nil, errors.New("no ciphertext to decrypt")
+	
 	}
 
 	return ent.Decrypt(ciphertext)
