@@ -187,32 +187,6 @@ func (s *SmartContract) queryAllTuna(APIstub shim.ChaincodeStubInterface) sc.Res
 The data in the world state can be updated with who has possession. 
 This function takes in 2 arguments, tuna id and new holder name. 
  */
-func (s *SmartContract) changeTunaHolder(APIstub shim.ChaincodeStubInterface, args []string) sc.Response {
-
-	if len(args) != 2 {
-		return shim.Error("Incorrect number of arguments. Expecting 2")
-	}
-	tunaDec, error := fc.Decrypter(APIstub, args[0] )
-	if error != nil {
-		return shim.Error("Could not  get or Decrypt tuna")
-	}
-	
-	tuna := Tuna{}
-
-	json.Unmarshal(tunaDec, &tuna)
-	// Normally check that the specified argument is a valid holder of tuna
-	// we are skipping this check for this example
-	tuna.Holder = args[1]
-
-	tunaDec, _ = json.Marshal(tuna)
-        error := fc.Encrypter(APIstub, args[0], []byte(tunaDec))
-	if error != nil {
-	  return shim.Error(fmt.Sprintf("Failed to Encrypt changed tuna holder: %s", args[0]))
-	      }
-
-	return shim.Success(nil)
-}
-
 /*
  * main function *
 calls the Start function 
