@@ -126,7 +126,7 @@ func (s *SmartContract) recordTuna(APIstub shim.ChaincodeStubInterface, args []s
 	var tuna = Tuna{ Vessel: args[1], Location: args[2], Timestamp: args[3], Holder: args[4] }
 
 	tunaAsBytes, _ := json.Marshal(tuna)
-	 _, error := fc.Encrypter(APIstub, args[0], []byte(tunaAsBytes))
+	 error := fc.Encrypter(APIstub, args[0], []byte(tunaAsBytes))
 	if error != nil {
 		return shim.Error(fmt.Sprintf("Failed to Encrypt tuna catch: %s", args[0]))
 	      }
@@ -205,7 +205,7 @@ func (s *SmartContract) changeTunaHolder(APIstub shim.ChaincodeStubInterface, ar
 	tuna.Holder = args[1]
 
 	tunaAsBytes, _ = json.Marshal(tuna)
-        _, error := fc.Encrypter(APIstub, args[0], []byte(tunaAsBytes))
+        error := fc.Encrypter(APIstub, args[0], []byte(tunaAsBytes))
 	if error != nil {
 	  return shim.Error(fmt.Sprintf("Failed to Encrypt changed tuna holder: %s", args[0]))
 	      }
