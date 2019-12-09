@@ -9,7 +9,7 @@ We are going to demonstrate encryption of user data via different chaincodes(go 
 #### Quick demo
 
 ```
-git clone https://github.com/BCDevs/hlf-encryption.git
+git clone https://github.com/Salmandabbakuti/hlf-encryption.git
 
 cd hlf-encryption
 chmod 777 node-start.sh
@@ -18,7 +18,7 @@ chmod 777 go-start.sh
 ./go-start.sh #golang chaincode encryption model (tuna supplychain logic)
 
 ```
-<img aligin="center" src ="https://github.com/BCDevs/hlf-encryption/blob/node/db.jpg">
+<img aligin="center" src ="https://github.com/Salmandabbakuti/hlf-encryption/blob/master/db.jpg">
 
 #### Cons
 
