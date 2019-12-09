@@ -35,9 +35,12 @@ echo 'Querying For Result on Org1 Peer'
 
 sudo docker exec -it cli peer chaincode query -n mycc -c '{"function":"login","Args":["salman279","12345"]}' -C mychannel
 
-echo 'All Done.. You are Awesome.. 
+echo 'All Done.. You are Awesome..'
+sleep 1
 echo 'What Just Happened?? You Succesfully Encrypted State Database and decrypted via nodejs chaincode..'
+sleep 1
 echo 'Signing off *Salman Dabbakuti*'
+sleep 1
 echo 'have a great day... bye..'
 
 exit 1

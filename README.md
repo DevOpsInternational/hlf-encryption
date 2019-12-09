@@ -1,8 +1,9 @@
 # hlf-encryption
-encrypting state database in hyperledger-fabric 
+
+#### Big Picture
 
 There are some cases when we will be dealing with sensitive data like storing credit cards data, bank information etc.. as a part of our business application in distributed ledger.
-End-user always wanted to secure this confidential information even if the database is compromised. In blockchain,there are minute chances that database is hacked. 
+End-user always wanted to secure this confidential information even if the database is compromised. however, In blockchain,there are minute chances that database is hacked. 
 Although chances are less for hacking blockchain database, it is good practice to encrypt user data when storing in blockchain databse. 
 We are going to demonstrate encryption of user data via different chaincodes(go and nodejs).
 

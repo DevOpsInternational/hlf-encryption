@@ -30,13 +30,20 @@ echo 'Getting things ready for Chaincode Invocation..should take only 10 seconds
 
 sleep 10
 
-echo 'Registering Tunas..'
+echo 'Initializing Ledger'
 
 sudo docker exec -it cli peer chaincode invoke -o orderer.example.com:7050 -C mychannel -n mycc -c '{"function":"initLedger","Args":[]}'
+sleep 3
+echo 'querying Tuna..'
+sudo docker exec -it cli peer chaincode query -C mychannel -n mycc -c '{"function":"queryTuna","Args":["2"]}'
+sleep 1
+echo 'All Done.. You are Awesome..'
+sleep 1
+echo 'What Just Happened?? You Succesfully Encrypted State Database and decrypted via golang chaincode..'
+sleep 1
+echo 'Signing off *Salman Dabbakuti*'
+sleep 1
+echo 'have a great day... bye..'
 
-sleep 5
-# Starting docker logs of chaincode container
-
-sudo docker logs -f dev-peer0.org1.example.com-mycc-1.0
-
+exit 1
 
