@@ -2,25 +2,21 @@
 const shim = require('fabric-shim');
 const util = require('util');
 const crypto = require('crypto');
-const algorithm = 'aes-256-cbc';
-const key = crypto.randomBytes(32);
-const iv = crypto.randomBytes(16);
 
-function encrypt(text) {
- let cipher = crypto.createCipheriv(algorithm, Buffer.from(key), iv);
- let encrypted = cipher.update(text);
- encrypted = Buffer.concat([encrypted, cipher.final()]);
- return { iv: iv.toString('hex'), encryptedData: encrypted.toString('hex') };
-}
+function encrypt(data,password){
+   const cipher = crypto.createCipher('aes256', password);
+   let encrypted = cipher.update(data, 'utf8', 'hex');
+   encrypted += cipher.final('hex');
+   return encrypted;
+     }
 
-function decrypt(text) {
- let iv = Buffer.from(text.iv, 'hex');
- let encryptedText = Buffer.from(text.encryptedData, 'hex');
- let decipher = crypto.createDecipheriv(algorithm, Buffer.from(key), iv);
- let decrypted = decipher.update(encryptedText);
- decrypted = Buffer.concat([decrypted, decipher.final()]);
- return decrypted.toString();
-}
+  function decrypt(cipherData,password)  {
+    const decipher = crypto.createDecipher('aes256', password);
+    let decrypted = decipher.update(cipherData, 'hex', 'utf8');
+    decrypted += decipher.final('utf8');
+    return decrypted.toString();
+        }
+
 let Chaincode = class {
  
    async Init(stub) {
@@ -48,7 +44,7 @@ async Invoke(stub) {
      }
   
 async signUp(stub, args) {
-      if (args.length != 2) {
+      if (args.length != 3) {
      return Buffer.from('Incorrect number of arguments. Expecting 2');
             }
    let credentialsAsBytes = await stub.getState(args[0]); 
@@ -57,7 +53,7 @@ async signUp(stub, args) {
 
    const credentials  = {userName:args[0],password:args[1]};
    let data = JSON.stringify(credentials);
-   let cipher = encrypt(data);
+   let cipher = encrypt(data,args[2]);
    
    await stub.putState(args[0], Buffer.from(JSON.stringify(cipher)));
    console.info('*Signup Successfull..Your Username is '+args[0]);
@@ -69,7 +65,7 @@ async signUp(stub, args) {
   }
 
 async login(stub, args) {
-  if (args.length != 2) {
+  if (args.length != 3) {
      return Buffer.from('Incorrect number of arguments. Expecting 2');
         }
     
@@ -82,7 +78,7 @@ async login(stub, args) {
          }
   else{
   let data= JSON.parse(credentialsAsBytes);
-  let decryptData= decrypt(data);
+  let decryptData= decrypt(data,args[2]);
   let credentials= JSON.parse(decryptData);
   if (password!=credentials.password) {
   return Buffer.from('Incorrect Password..!');

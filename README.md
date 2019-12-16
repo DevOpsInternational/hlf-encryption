@@ -21,9 +21,5 @@ chmod 777 go-start.sh
 ```
 <img aligin="center" src ="https://github.com/Salmandabbakuti/hlf-encryption/blob/master/db.jpg">
 
-#### Cons
-
->Encryption key will get changed after every chaincode upgrade. So we are not able to decrypt previously stored data.
-
 
 **©Salman Dabbakuti**

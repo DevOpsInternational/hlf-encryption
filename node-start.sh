@@ -27,13 +27,13 @@ sleep 5
 
 echo 'Invoking Chaincode From Org1 Peer'
 
-sudo docker exec -it cli peer chaincode invoke -o orderer.example.com:7050 -n mycc -c '{"function":"signUp", "Args":["salman279","12345"]}' -C mychannel
+sudo docker exec -it cli peer chaincode invoke -o orderer.example.com:7050 -n mycc -c '{"function":"signUp", "Args":["salman279","12345","qwertyasdf"]}' -C mychannel
 
 sleep 5
 
 echo 'Querying For Result on Org1 Peer'
 
-sudo docker exec -it cli peer chaincode query -n mycc -c '{"function":"login","Args":["salman279","12345"]}' -C mychannel
+sudo docker exec -it cli peer chaincode query -n mycc -c '{"function":"login","Args":["salman279","12345","qwertyasdf"]}' -C mychannel
 
 echo 'All Done.. You are Awesome..'
 sleep 1
